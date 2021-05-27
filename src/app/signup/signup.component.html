@@ -1,0 +1,52 @@
+<mat-card>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <form *ngIf="!isLoading" (ngSubmit)="onSignUpSubmit()">
+        <mat-form-field appearance="fill">
+            <mat-label>Enter your email</mat-label>
+            <input matInput [formControl]="email" required placeholder="max@mustermann.at">
+            <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Enter your password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" maxlength="100" minlength="8" pattern="^[A-Za-z0-9ÄäÖöÜüß]*$" required placeholder="Password">
+            <button mat-icon-button type="button" matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide Password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="password.invalid">{{getPWErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Confirm your password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" [formControl]="pwConfirm" maxlength="100" minlength="8" pattern="^[A-Za-z0-9ÄäÖöÜüß]*$" required placeholder="Password">
+            <mat-error *ngIf="pwConfirm.invalid">{{getPWConfimErrorMessage()}}</mat-error>
+            <mat-hint *ngIf="this.pwConfirm.value && this.password.value" class="matchErr">{{getPWMatchErrorMessage()}}</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Address:</mat-label>
+            <textarea matInput [formControl]="address" maxlength="100" placeholder="Höchstädtplatz 6"></textarea>
+            <mat-error *ngIf="address.invalid">{{getAddressErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>City:</mat-label>
+            <input matInput [formControl]="city" maxlength="100" pattern="^[A-Za-z0-9- ÄäÖöÜüß]*$" placeholder="Vienna">
+            <mat-error *ngIf="address.invalid">{{getCityErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Postal Code:</mat-label>
+            <input matInput [formControl]="postalCode" maxlength="100" pattern="^[0-9]*$" placeholder="1200">
+            <mat-error *ngIf="address.invalid">{{getPostalCodeErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Company:</mat-label>
+            <input matInput id="company" value="FH Technikum Wien" maxlength="100" pattern="^[A-Za-z0-9- ÄäÖöÜüß]*$" disabled>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit">Sign Up</button>
+
+    </form>
+</mat-card>
