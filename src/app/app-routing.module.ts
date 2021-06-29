@@ -3,11 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { GameComponent } from './game/game.component';
+import { HighscoreListComponent } from './highscore-list/highscore-list.component';
 
 
 const routes: Routes = [
 { path: 'login', component: LoginComponent },
 { path: 'signup', component: SignupComponent },
+{ path: 'game', component: GameComponent },
+{ path: 'highscore-list', component: HighscoreListComponent },
 ];
 
 @NgModule({

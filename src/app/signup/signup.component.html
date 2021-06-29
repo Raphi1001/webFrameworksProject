@@ -32,13 +32,13 @@
         <mat-form-field appearance="fill">
             <mat-label>City:</mat-label>
             <input matInput [formControl]="city" maxlength="100" pattern="^[A-Za-z0-9- ÄäÖöÜüß]*$" placeholder="Vienna">
-            <mat-error *ngIf="address.invalid">{{getCityErrorMessage()}}</mat-error>
+            <mat-error *ngIf="city.invalid">{{getCityErrorMessage()}}</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Postal Code:</mat-label>
             <input matInput [formControl]="postalCode" maxlength="100" pattern="^[0-9]*$" placeholder="1200">
-            <mat-error *ngIf="address.invalid">{{getPostalCodeErrorMessage()}}</mat-error>
+            <mat-error *ngIf="postalCode.invalid">{{getPostalCodeErrorMessage()}}</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">

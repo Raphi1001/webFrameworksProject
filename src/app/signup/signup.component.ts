@@ -1,5 +1,7 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -19,6 +21,14 @@ export class SignupComponent implements OnInit {
   company = '';
   pwConfirmErr = false;
 
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
+  constructor(private http: HttpClient, private router: Router) { }
+
+  ngOnInit(): void {
+  }
 
   getEmailErrorMessage() {
     if (this.email.hasError('required')) return 'You must enter a value.';
@@ -57,20 +67,20 @@ export class SignupComponent implements OnInit {
   }
 
   getAddressErrorMessage() {
-    if (this.address.hasError('maxLength')) return 'The address you entered is too long.';
+    if (this.address.hasError('maxlength')) return 'The address you entered is too long.';
 
     return '';
   }
 
   getCityErrorMessage() {
-    if (this.city.hasError('maxLength')) return 'The city you entered is too long.';
+    if (this.city.hasError('maxlength')) return 'The city you entered is too long.';
     if (this.city.hasError('pattern')) return 'Not a valid city';
 
     return '';
   }
 
   getPostalCodeErrorMessage() {
-    if (this.postalCode.hasError('maxLength')) return 'The postal code you entered is too long.';
+    if (this.postalCode.hasError('maxlength')) return 'The postal code you entered is too long.';
     if (this.postalCode.hasError('pattern')) return 'Not a valid postal code';
 
     return '';
@@ -84,13 +94,17 @@ export class SignupComponent implements OnInit {
 
     if (company != "FH Technikum Wien") return;
 
-    console.log("Signed up successfully");
-    alert("Signed up successfully");
+
+    var inputData = { email: this.email.value, password: this.password.value, adress: this.address.value, city: this.city.value, postalCode: this.postalCode.value, pwConfirm: this.pwConfirm.value};
+    this.http.post<{ message: string }>('http://localhost:3000/signUp', inputData, this.httpOptions)
+    .subscribe({
+      next: (responseData) => {
+        alert(responseData.message);
+        this.router.navigate(['/login'])
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
   }
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }
