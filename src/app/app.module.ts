@@ -17,6 +17,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { GameComponent } from './game/game.component';
 import { HighscoreListComponent } from './highscore-list/highscore-list.component';
+import { PuzzleComponent } from './puzzle/puzzle.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +25,7 @@ import { HighscoreListComponent } from './highscore-list/highscore-list.componen
     SignupComponent,
     GameComponent,
     HighscoreListComponent,
+    PuzzleComponent,
   ],
   imports: [
     BrowserModule,
