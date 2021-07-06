@@ -17,6 +17,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { GameComponent } from './game/game.component';
 import { HighscoreListComponent } from './highscore-list/highscore-list.component';
+import { PuzzleComponent } from './puzzle/puzzle.component';
 import { FaqComponent } from './faq/faq.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ImpressumComponent } from './impressum/impressum.component';
@@ -28,6 +29,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     SignupComponent,
     GameComponent,
     HighscoreListComponent,
+    PuzzleComponent,
     FaqComponent,
     ProfileComponent,
     ImpressumComponent,

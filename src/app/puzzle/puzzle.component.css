@@ -1,15 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
-
-html,
-body {
-    height: 100%;
+#puzzleGame {
+    background-color: pink;
+    margin-top: 20px;
+    font-size: 0px;
 }
 
-body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-}
 
+/*
+Funktioniert aus irgendeinem Grund hier nicht,deshalb nach styles.css verschoben
 .card {
     display: inline;
     height: 200px;
@@ -29,3 +26,5 @@ body {
     left: 0;
     right: 0;
 }
+
+*/
