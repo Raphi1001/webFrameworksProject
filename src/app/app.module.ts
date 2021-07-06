@@ -20,6 +20,7 @@ import { HighscoreListComponent } from './highscore-list/highscore-list.componen
 import { FaqComponent } from './faq/faq.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ImpressumComponent } from './impressum/impressum.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +45,8 @@ import { ImpressumComponent } from './impressum/impressum.component';
     MatInputModule,
     MatFormFieldModule,
     MatProgressSpinnerModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
