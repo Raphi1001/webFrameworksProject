@@ -1,8 +1,12 @@
-body {
+#puzzleGame {
     background-color: pink;
     margin-top: 20px;
+    font-size: 0px;
 }
 
+
+/*
+Funktioniert aus irgendeinem Grund hier nicht,deshalb nach styles.css verschoben
 .card {
     display: inline;
     height: 200px;
@@ -22,3 +26,5 @@ body {
     left: 0;
     right: 0;
 }
+
+*/
