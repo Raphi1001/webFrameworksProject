@@ -14,10 +14,13 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input'; 
 import {MatFormFieldModule} from '@angular/material/form-field'; 
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSidenavModule} from '@angular/material/sidenav';
 import { GameComponent } from './game/game.component';
 import { HighscoreListComponent } from './highscore-list/highscore-list.component';
 import { PuzzleComponent } from './puzzle/puzzle.component';
+import { FaqComponent } from './faq/faq.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ImpressumComponent } from './impressum/impressum.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +29,9 @@ import { PuzzleComponent } from './puzzle/puzzle.component';
     GameComponent,
     HighscoreListComponent,
     PuzzleComponent,
+    FaqComponent,
+    ProfileComponent,
+    ImpressumComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +46,7 @@ import { PuzzleComponent } from './puzzle/puzzle.component';
     MatInputModule,
     MatFormFieldModule,
     MatProgressSpinnerModule,
-    MatToolbarModule
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,3 +1,14 @@
 .toolbar-link {
     margin: 0.4em;
 }
+
+#sidebar{
+    width: 10%;
+    height: 100%;
+    text-align: center;
+    overflow: hidden;
+}
+
+#sideBarContainer{
+    height: 100%;
+}
