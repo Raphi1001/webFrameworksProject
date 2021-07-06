@@ -2,8 +2,8 @@
     background-color: pink;
     margin-top: 20px;
     font-size: 0px;
+    text-align: center;
 }
-
 
 /*
 Funktioniert aus irgendeinem Grund hier nicht,deshalb nach styles.css verschoben
@@ -25,6 +25,10 @@ Funktioniert aus irgendeinem Grund hier nicht,deshalb nach styles.css verschoben
     top: 50%;
     left: 0;
     right: 0;
+}
+
+#solvedTxt{
+    text-align: center;
 }
 
 */

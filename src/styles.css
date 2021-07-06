@@ -29,3 +29,7 @@ body {
     left: 0;
     right: 0;
 }
+
+#solvedTxt{
+    text-align: center;
+}

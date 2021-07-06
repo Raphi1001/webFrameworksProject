@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GlobalConstants } from '../global-constants';
+import { LogInService } from '../shared/login.service';
 
 @Component({
   selector: 'app-login',
@@ -52,7 +53,7 @@ export class LoginComponent implements OnInit {
           console.log(responseData.message);
           if(responseData.success == true)
           {
-            GlobalConstants.token = responseData.token;
+            GlobalConstants.token = responseData.token; 
 
             this.router.navigate(['/game'])
             return;

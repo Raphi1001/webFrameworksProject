@@ -22,6 +22,7 @@ import { FaqComponent } from './faq/faq.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ImpressumComponent } from './impressum/impressum.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { LogInService } from './shared/login.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +51,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatSidenavModule,
     MatExpansionModule
   ],
-  providers: [],
+  providers: [LogInService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

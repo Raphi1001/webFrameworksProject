@@ -16,14 +16,14 @@ export class PuzzleComponent implements OnInit {
 
   //creates the puzzle
   printPlayingField() {
-    var puzzleParts = this.shufflePuzzleParts();
-    var puzzlGame = document.getElementById("puzzleGame");
-    var allCards = [];
+    let puzzleParts = this.shufflePuzzleParts();
+    let puzzlGame = document.getElementById("puzzleGame");
+    let allCards = [];
     if (!puzzlGame) return;
 
-    for (var i = 0; i < 9;) { //repeat for 9 cards
-      for (var u = 0; u < 3; ++u) { //repeat for 3 rows
-        var newCard = this.renderer.createElement("img"); //creates new img element
+    for (let i = 0; i < 9;) { //repeat for 9 cards
+      for (let u = 0; u < 3; ++u) { //repeat for 3 rows
+        let newCard = this.renderer.createElement("img"); //creates new img element
         newCard.setAttribute("class", "card");
         newCard.setAttribute("id", "card-" + i);
         newCard.setAttribute("src", "assets/pics/puzzle1_imgs/img" + puzzleParts[i] + ".jpg");
@@ -31,7 +31,7 @@ export class PuzzleComponent implements OnInit {
         allCards.push(newCard);
         ++i;
       }
-      var br = document.createElement("br"); //linebreak every 3rd card
+      let br = document.createElement("br"); //linebreak every 3rd card
       puzzlGame.appendChild(br);
     }
 
@@ -59,10 +59,10 @@ export class PuzzleComponent implements OnInit {
   //selectes/deselectes clicked at cards
   selectCard(cardId: string) {
     //extract number from string
-    var curNumb = cardId.match(/\d/g);
+    let curNumb = cardId.match(/\d/g);
     if (!curNumb) return;
-    var id = curNumb.join("");
-    var cartToSelect = document.getElementById("card-" + id); //gets the clicked at card
+    let id = curNumb.join("");
+    let cartToSelect = document.getElementById("card-" + id); //gets the clicked at card
       if (!cartToSelect) return;
       if (cartToSelect.classList.contains("selected")) { //if clicked at card is already selected
           cartToSelect.classList.remove("selected"); //deselect selected card
@@ -77,11 +77,11 @@ export class PuzzleComponent implements OnInit {
 
   //swaps selected cards
   swapselectedCards() {
-    var selectedCards = document.getElementsByClassName("selected"); //creates array of all selected cards
+    let selectedCards = document.getElementsByClassName("selected"); //creates array of all selected cards
 
     if (selectedCards.length > 1) { //if more than one card is selected
-      var img1 = selectedCards[0].getAttribute("src"); //get img src of first selected card
-      var img2 = selectedCards[1].getAttribute("src"); //get img src of second selected card
+      let img1 = selectedCards[0].getAttribute("src"); //get img src of first selected card
+      let img2 = selectedCards[1].getAttribute("src"); //get img src of second selected card
 
       if (!img1 || !img2) return;
       //swap img srcs of first and second card
@@ -98,15 +98,15 @@ export class PuzzleComponent implements OnInit {
 
   //checks if the puzzle is solved
   checkIfSolved() {
-    var solved = true;
-    var allCards = document.getElementsByClassName("card"); //creates array of all cards
-    for (var i = 0; i < allCards.length - 1; ++i) { //repeat for all cards
-      var imgsToCheck = []; //temporarily stores the next two cards
-      for (var u = 0; u < 2; ++u) { //repeat process for the next two cards
-        var curSrc = allCards[i + u].getAttribute("src"); //gets the card img src
+    let solved = true;
+    let allCards = document.getElementsByClassName("card"); //creates array of all cards
+    for (let i = 0; i < allCards.length - 1; ++i) { //repeat for all cards
+      let imgsToCheck = []; //temporarily stores the next two cards
+      for (let u = 0; u < 2; ++u) { //repeat process for the next two cards
+        let curSrc = allCards[i + u].getAttribute("src"); //gets the card img src
         if (!curSrc) return;
         //extract number from string
-        var curNumb = curSrc.match(/\d/g);
+        let curNumb = curSrc.match(/\d/g);
         if (!curNumb) return;
         imgsToCheck[u] = curNumb.join("");
       }
@@ -118,12 +118,15 @@ export class PuzzleComponent implements OnInit {
     }
 
     if (solved) { //if the puzzle is solved
-      var solvedTxt = document.createElement("h2"); //create solved txt
+      let puzzlGame = document.getElementById("puzzleGame");
+      let solvedTxt = document.createElement("h2"); //create solved txt
+      solvedTxt.setAttribute('id', 'solvedTxt');
+      puzzlGame?.insertAdjacentElement( 'afterend', solvedTxt);
       solvedTxt.textContent = "SOLVED :)";
-      document.body.appendChild(solvedTxt);
+      console.log(allCards[1])
 
-      for (var i = 0; i < allCards.length; ++i) { //remove onclick attribute from all cards
-        allCards[i].removeAttribute("onclick");
+      for (let i = 0; i < allCards.length; ++i) { //remove onclick attribute from all cards
+        allCards[i].removeAttribute("id");
       }
     }
   }

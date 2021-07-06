@@ -2,17 +2,23 @@
     <mat-drawer mode="side" id="sidebar" opened>
         <img src="assets/logo.png">
         <br>
-        <a mat-raised-button id="signUp" color="primary" type="button" class="toolbar-link" routerLink="/signup">SignUp</a>
-        <br>
-        <a mat-raised-button color="primary" type="button" class="toolbar-link" routerLink="/login">Login</a>
-        <br>
+        <!--checkt ob man eingelog ist oder nicht, buttons werden entsprechend angezeigt-->
+        <div *ngIf="isLogedIn; else elseBlock">
+            <a mat-raised-button color="primary" type="button" class="toolbar-link" routerLink="/login">Logout</a>
+            <br>
+            <a mat-raised-button color="primary" type="button" class="toolbar-link" routerLink="/profile">Profile</a>
+            <br>
+            <a mat-raised-button color="primary" type="button" class="toolbar-link" routerLink="/highscore-list">Highscore</a>        
+        </div>
+        <ng-template #elseBlock>
+            <a mat-raised-button id="signUp" color="primary" type="button" class="toolbar-link" routerLink="/signup">SignUp</a>
+            <br>
+            <a mat-raised-button color="primary" type="button" class="toolbar-link" routerLink="/login">Login</a>
+            <br>
+        </ng-template>
         <a mat-raised-button color="primary" type="button" class="toolbar-link" routerLink="/game">Game</a>
         <br>
         <a mat-raised-button color="primary" type="button" class="toolbar-link" routerLink="/puzzle">Puzzle</a>
-        <br>
-        <a mat-raised-button color="primary" type="button" class="toolbar-link" routerLink="/highscore-list">Highscore</a>
-        <br>
-        <a mat-raised-button color="primary" type="button" class="toolbar-link" routerLink="/profile">Profile</a>
         <br>
         <a mat-raised-button color="primary" type="button" class="toolbar-link buttonBottom" routerLink="/faq">FAQ</a>
         <br>
