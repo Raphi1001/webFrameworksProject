@@ -1,7 +1,22 @@
-<h1>
-    {{title}}</h1>
-<mat-toolbar id="defaultToolbar">
-    <a mat-raised-button color="primary" type="button" class="toolbar-link" routerLink="/login">Login</a>
-    <a mat-raised-button color="primary" type="button" class="toolbar-link" routerLink="/signup">Sign Up</a>
-</mat-toolbar>
-<router-outlet></router-outlet>
+<mat-drawer-container id="sideBarContainer">
+    <mat-drawer mode="side" id="sidebar" opened>
+        <img src="assets/logo.png">
+        <br>
+        <a mat-raised-button id="signUp" color="primary" type="button" class="toolbar-link" routerLink="/signup">SignUp</a>
+        <br>
+        <a mat-raised-button color="primary" type="button" class="toolbar-link" routerLink="/login">Login</a>
+        <br>
+        <a mat-raised-button color="primary" type="button" class="toolbar-link" routerLink="/game">Game</a>
+        <br>
+        <a mat-raised-button color="primary" type="button" class="toolbar-link" routerLink="/highscore-list">Highscore</a>
+        <br>
+        <a mat-raised-button color="primary" type="button" class="toolbar-link" routerLink="/profile">Profile</a>
+        <br>
+        <a mat-raised-button color="primary" type="button" class="toolbar-link buttonBottom" routerLink="/faq">FAQ</a>
+        <br>
+        <a mat-raised-button color="primary" type="button" class="toolbar-link buttonBottom" routerLink="/impressum">Impressum</a>
+    </mat-drawer>
+    <mat-drawer-content>
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+</mat-drawer-container>
