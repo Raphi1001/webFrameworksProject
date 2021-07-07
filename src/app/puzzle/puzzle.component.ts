@@ -1,6 +1,5 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
-import { time } from 'console';
 
 @Component({
   selector: 'app-puzzle',
@@ -10,15 +9,21 @@ import { time } from 'console';
 export class PuzzleComponent implements OnInit {
   selectedPuzzle = this.router.url == "/puzzle1" ? "puzzle1_imgs" : "puzzle2_imgs"; //select puzzle based on url
   constructor(private renderer: Renderer2, private router: Router) { }
+  //kann ich nicht im constructor machen
+  private passedTime = 0;
+  //private timer: NodeJS.Timeout;
+  private timer : any;
 
   ngOnInit(): void {
     console.log(this.router.url);
     this.printPlayingField();
-    passedTime = 0;
+    this.timerStart();
+    this.passedTime = 0;
 
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        passedTime = 0;
+        this.passedTime = 0;
+        clearInterval(this.timer);
       }
     })
   }
@@ -134,23 +139,24 @@ export class PuzzleComponent implements OnInit {
       puzzlGame?.insertAdjacentElement('afterend', solvedTxt);
       solvedTxt.textContent = "SOLVED :)";
       console.log(allCards[1])
-      let score = 100 - passedTime;
+      let score = 100 - this.passedTime;
       if(score < 0) score = 0;
-      clearInterval(timer);                        //stops the timer  
+      clearInterval(this.timer);                        //stops the timer  
 
       for (let i = 0; i < allCards.length; ++i) { //remove onclick attribute from all cards
         allCards[i].removeAttribute("id");
       }
     }
   }
-}
 
-let passedTime = 0;
-var timer = setInterval(function () {
-  ++passedTime;
-  let timer = document.getElementById("timer");
-  if (timer) {
-    timer.textContent = passedTime.toString();
+  timerStart(){
+    let passedTime = 0;
+    this.timer = setInterval(function () {
+      ++passedTime;
+      let timer = document.getElementById("timer");
+      if (timer) {
+        timer.textContent = passedTime.toString();
+      }
+    }, 1000); //updates Timer
   }
-}, 1000); //updates Timer
-
+}
