@@ -50,13 +50,34 @@ export class HighscoreListComponent implements OnInit {
           if (!highscoreList) return;
           var list: Object = responseData.highscoreList;
 
-          let uname: keyof typeof list;  
+          let tempList = [];                    //create temporary list and store all values in it
+          let uname: keyof typeof list;
+          for (uname in list) {
+            tempList.push(list[uname]);
+          }
+
+          tempList.sort(function(a:any, b:any){return b-a});   //sorts the temporary list in descending order
+          tempList.forEach(element => {
+            for (uname in list) {                   
+              if (element == list[uname]) {
+                var newLi = document.createElement("li");
+                var newContent = document.createTextNode(String(uname) + ": " + String(list[uname]));
+                delete list[uname];
+                newLi.appendChild(newContent);
+                if (highscoreList)
+                  highscoreList.append(newLi);
+                break;
+              }
+            }
+          });
+          /*
           for (uname in list) {
             var newLi = document.createElement("li");
-            var newContent = document.createTextNode(String(uname) + ": " +String(list[uname]));
+            var newContent = document.createTextNode(String(uname) + ": " + String(list[uname]));
             newLi.appendChild(newContent);
             highscoreList.append(newLi);
           }
+          */
         },
         error: (err) => {
           alert("Invalid User Input");

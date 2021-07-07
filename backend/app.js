@@ -12,15 +12,14 @@ app.use(express.urlencoded({
     extended: false
 }));
 
-
-
+/* DATABASE START */
 var User1 = new User("max@mustermann.at", "11111111", "11111111", "Musterstraße 1", "Wien", "2010");
 var User2 = new User("erica@musterfrau.at", "22222222", "22222222", "Musterstraße 2", "Deutschland", "1010");
 var Users = [User1, User2];
 
 var AuthenticationTokens = {};
-
-var Highscores = {};
+var Highscores = { Harry: 50, Paul: 51, Raphi: 37, Noc: 422, Noc2: 422 };
+/* DATABASE END */
 
 
 //POST route for login
@@ -37,14 +36,14 @@ app.post('/login', (req, res, next) => {
 
     for (var i = 0; i < Users.length; ++i) {
         if (Users[i].email == newUser.email && Users[i].password == newUser.password) {
-            console.log("User found");
             let token = Math.floor(Math.random() * 99999);
             AuthenticationTokens[newUser.email] = token;
-
+            console.log(newUser.email);
             res.status(200).json({
                 message: "Login successfull",
                 success: true,
-                token: AuthenticationTokens[newUser.email]
+                token: AuthenticationTokens[newUser.email],
+                email: newUser.email
             });
             return;
         }
@@ -99,11 +98,24 @@ app.post('/highscore', (req, res, next) => {
     console.log(data.username);
     console.log(data.points);
 
-    Highscores[data.username] = data.points;
-    console.log("Highscore updated successfull");
-    res.status(200).json({
-        message: "Highscore updated successfull",
-    });
+    if (!Highscores[data.username]) {
+        console.log("am arsch");
+    }
+
+    if (!Highscores[data.username] || Highscores[data.username] < data.points) {
+        Highscores[data.username] = data.points;
+        console.log("Highscore updated successfull");
+        res.status(200).json({
+            message: "Highscore updated successfull",
+            updated: true
+        });
+    } else {
+        console.log("No new Highscore");
+        res.status(200).json({
+            message: "No new Highscore",
+            updated: false
+        });
+    }
 });
 
 
