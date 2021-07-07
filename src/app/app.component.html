@@ -1,6 +1,7 @@
 <mat-drawer-container id="sideBarContainer">
     <mat-drawer mode="side" id="sidebar" opened>
-        <img src="assets/logo.png">
+        <a routerLink=""> <img src="assets/logo.png"></a>
+
         <br>
         <!--checkt ob man eingelog ist oder nicht, buttons werden entsprechend angezeigt-->
         <div *ngIf="isLogedIn; else elseBlock">
