@@ -13,6 +13,7 @@ export class PuzzleComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.router.url);
     this.printPlayingField();
+    passedTime = 0;
 
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
