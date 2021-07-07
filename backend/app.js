@@ -98,10 +98,6 @@ app.post('/highscore', (req, res, next) => {
     console.log(data.username);
     console.log(data.points);
 
-    if (!Highscores[data.username]) {
-        console.log("am arsch");
-    }
-
     if (!Highscores[data.username] || Highscores[data.username] < data.points) {
         Highscores[data.username] = data.points;
         console.log("Highscore updated successfull");
@@ -148,7 +144,6 @@ app.post('/verifyToken', (req, res, next) => {
 });
 
 app.get('/getHighscoreList', (req, res, next) => {
-    console.log("ja");
     res.status(200).json({
         highscoreList: Highscores
     });
