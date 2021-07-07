@@ -1,5 +1,5 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 
 @Component({
   selector: 'app-puzzle',
@@ -8,12 +8,17 @@ import { Router } from '@angular/router';
 })
 export class PuzzleComponent implements OnInit {
   selectedPuzzle = this.router.url == "/puzzle1" ? "puzzle1_imgs" : "puzzle2_imgs"; //select puzzle based on url
-  passedTime = 0;
   constructor(private renderer: Renderer2, private router: Router) { }
 
   ngOnInit(): void {
     console.log(this.router.url);
     this.printPlayingField();
+
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        passedTime = 0;
+      }
+    })
   }
 
   //creates the puzzle
@@ -127,7 +132,7 @@ export class PuzzleComponent implements OnInit {
       puzzlGame?.insertAdjacentElement('afterend', solvedTxt);
       solvedTxt.textContent = "SOLVED :)";
       console.log(allCards[1])
-      
+
       clearInterval(timer);                        //stops the timer  
 
       for (let i = 0; i < allCards.length; ++i) { //remove onclick attribute from all cards
