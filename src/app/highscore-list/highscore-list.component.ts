@@ -10,8 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./highscore-list.component.css']
 })
 export class HighscoreListComponent implements OnInit {
-  email = "Max Mustermann";
-
+  
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
