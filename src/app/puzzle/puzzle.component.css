@@ -5,6 +5,15 @@
     text-align: center;
 }
 
+h2{
+    display: inline-block;
+}
+
+#score{
+    text-align: right;
+    float: right;
+}
+
 /*
 Funktioniert aus irgendeinem Grund hier nicht,deshalb nach styles.css verschoben
 .card {

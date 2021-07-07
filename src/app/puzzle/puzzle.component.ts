@@ -13,6 +13,8 @@ export class PuzzleComponent implements OnInit {
   private passedTime = 0;
   //private timer: NodeJS.Timeout;
   private timer : any;
+  scoreVisible = false;
+  scorepoints = "";
 
   ngOnInit(): void {
     console.log(this.router.url);
@@ -141,7 +143,14 @@ export class PuzzleComponent implements OnInit {
       console.log(allCards[1])
       let score = 100 - this.passedTime;
       if(score < 0) score = 0;
-      clearInterval(this.timer);                        //stops the timer  
+      clearInterval(this.timer);//stops the timer
+      //noch abfrage ob man eingelogt ist  
+      if(true){
+        this.scorepoints = score.toString();
+      }else{
+        this.scorepoints = "Login required";
+      }
+      this.scoreVisible = true;
 
       for (let i = 0; i < allCards.length; ++i) { //remove onclick attribute from all cards
         allCards[i].removeAttribute("id");
@@ -150,12 +159,11 @@ export class PuzzleComponent implements OnInit {
   }
 
   timerStart(){
-    let passedTime = 0;
-    this.timer = setInterval(function () {
-      ++passedTime;
+    this.timer = setInterval( () => {
+      this.passedTime++;
       let timer = document.getElementById("timer");
       if (timer) {
-        timer.textContent = passedTime.toString();
+        timer.textContent = this.passedTime.toString();
       }
     }, 1000); //updates Timer
   }
