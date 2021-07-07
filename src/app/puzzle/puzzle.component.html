@@ -1,13 +1,16 @@
-<h2>
-    Time: <span id="timer">0</span> seconds
-</h2>
+<mat-card>
+    <h2>
+        Time: <span id="timer">0</span> seconds
+    </h2>
 
-<h2 id="score" *ngIf="scoreVisible">
-    Score: {{scorepoints}}
-</h2>
+    <h2 id="score" *ngIf="scoreVisible">
+        Score: {{scorepoints}}
+    </h2>
 
-<div id="puzzleGame">
-</div>
-<noscript>
+    <div id="puzzleGame">
+    </div>
+    <noscript>
         <h1 class="noJs ">Please enabled javascript and try again.</h1>
 </noscript>
+
+</mat-card>
