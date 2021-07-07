@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     var inputData = { token: GlobalConstants.token };
+
     this.http.post<{ success: boolean, email: string }>('http://localhost:3000/verifyToken', inputData, this.httpOptions)
       .subscribe({
         next: (responseData) => {
@@ -32,6 +33,25 @@ export class ProfileComponent implements OnInit {
   }
 
   loadProfile() {
+    this.http.get<{ highscoreList: object }>('http://localhost:3000/getHighscoreList', this.httpOptions)
+      .subscribe({
+        next: (responseData) => {
+          var list: Object = responseData.highscoreList;
+
+          let uname: keyof typeof list;;
+          for (uname in list) {
+            let highscore = document.getElementById("highscore");
+            console.log(uname);
+            if (uname == GlobalConstants.currentUser.email && highscore) {
+              highscore.textContent = String(list[uname]);
+              break;
+            }
+          }
+        },
+        error: (err) => {
+          alert("Invalid User Input");
+        }
+      });
 
     let email = document.getElementById("email");
     if (email) email.textContent = GlobalConstants.currentUser.email;
