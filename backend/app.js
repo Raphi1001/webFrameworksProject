@@ -18,7 +18,7 @@ var User2 = new User("erica@musterfrau.at", "22222222", "22222222", "Musterstra√
 var Users = [User1, User2];
 
 var AuthenticationTokens = {};
-var Highscores = { Harry: 50, Paul: 51, Raphi: 37, Noc: 422, Noc2: 422 };
+var Highscores = { Harry: 50, Paul: 51, Raphi: 37, Noc: 422, Noc2: 422, Noc3: 421, Noc4: 72, asdasd: 31, lolo: 56, speta: 39, harry: 56, ich: 700 };
 /* DATABASE END */
 
 

@@ -20,21 +20,7 @@ export class HighscoreListComponent implements OnInit {
 
   ngOnInit(): void {
 
-    var inputData = { token: GlobalConstants.token };
-    this.http.post<{ success: boolean, email: string }>('http://localhost:3000/verifyToken', inputData, this.httpOptions)
-      .subscribe({
-        next: (responseData) => {
-          if (responseData.success == true) {
-            this.email = responseData.email;
-            this.loadList();
-            return;
-          }
-          this.router.navigate(['/login'])
-        },
-        error: (err) => {
-          alert("Invalid User Input");
-        }
-      });
+    this.loadList();
   }
 
   logOut() {
@@ -46,8 +32,6 @@ export class HighscoreListComponent implements OnInit {
     this.http.get<{ highscoreList: object }>('http://localhost:3000/getHighscoreList', this.httpOptions)
       .subscribe({
         next: (responseData) => {
-          var highscoreList = document.getElementById("highscoreList");
-          if (!highscoreList) return;
           var list: Object = responseData.highscoreList;
 
           let tempList = [];                    //create temporary list and store all values in it
@@ -57,18 +41,25 @@ export class HighscoreListComponent implements OnInit {
           }
 
           tempList.sort(function (a: any, b: any) { return b - a });   //sorts the temporary list in descending order
-          tempList.forEach(element => {
+          let counter = 0;
+
+          tempList.every(element => {
             for (uname in list) {
               if (element == list[uname]) {
-                var newLi = document.createElement("li");
-                var newContent = document.createTextNode(String(uname) + ": " + String(list[uname]));
+                let newLi = document.createElement("li");
+                let newContent = document.createTextNode(String(uname) + ": " + String(list[uname]));
                 delete list[uname];
                 newLi.appendChild(newContent);
+               
+                let highscoreList = document.getElementById("highscoreList");
                 if (highscoreList)
                   highscoreList.append(newLi);
                 break;
               }
             }
+            ++counter;
+            if(counter > 9) return false;
+            return true;
           });
         },
         error: (err) => {
