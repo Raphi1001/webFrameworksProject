@@ -36,10 +36,10 @@ export class GameComponent implements OnInit {
             loadGame();
             return;
           }
-          this.router.navigate(['/login'])
+          this.router.navigate(['/login'])      //if user ist not logged in
         },
         error: (err) => {
-          alert("Invalid User Input");
+          alert("Invalid User Input");      
         }
       });
   }

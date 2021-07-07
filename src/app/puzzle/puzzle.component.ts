@@ -176,8 +176,7 @@ export class PuzzleComponent implements OnInit {
   }
 
   addHighscore() {
-    console.log(GlobalConstants.email);
-    var inputData = { points: this.scorepoints, username: GlobalConstants.email};
+    var inputData = { points: this.scorepoints, username: GlobalConstants.currentUser.email};
     this.http.post<{ message: string, updated:boolean }>('http://localhost:3000/highscore', inputData, this.httpOptions)
     .subscribe({
       next: (responseData) => {

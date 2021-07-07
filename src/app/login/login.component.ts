@@ -47,15 +47,18 @@ export class LoginComponent implements OnInit {
   onLoginSubmit() {
     if (!this.email.valid || !this.password.valid) return;
     var inputData = { email: this.email.value, password: this.password.value };
-    this.http.post<{ message: string, success: boolean, token: number, email:string}>('http://localhost:3000/login', inputData, this.httpOptions)
+    this.http.post<{ message: string, success: boolean, token: number, email:string, adress:string, city:string, postalCode:number}>('http://localhost:3000/login', inputData, this.httpOptions)
       .subscribe({
         next: (responseData) => {
           console.log(responseData.message);
           if(responseData.success == true)
           {
-            console.log("hier " , responseData.email);
             GlobalConstants.token = responseData.token; 
-            GlobalConstants.email = responseData.email;
+            GlobalConstants.currentUser.email = responseData.email;
+            GlobalConstants.currentUser.adress = responseData.adress;
+            GlobalConstants.currentUser.city = responseData.city;
+            GlobalConstants.currentUser.postalCode = responseData.postalCode;
+            console.log(GlobalConstants.currentUser.postalCode);
             this.router.navigate(['/puzzle-overview'])
             return;
           }

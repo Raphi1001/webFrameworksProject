@@ -38,12 +38,14 @@ app.post('/login', (req, res, next) => {
         if (Users[i].email == newUser.email && Users[i].password == newUser.password) {
             let token = Math.floor(Math.random() * 99999);
             AuthenticationTokens[newUser.email] = token;
-            console.log(newUser.email);
             res.status(200).json({
                 message: "Login successfull",
                 success: true,
                 token: AuthenticationTokens[newUser.email],
-                email: newUser.email
+                email: Users[i].email,
+                adress: Users[i].adress,
+                city: Users[i].city,
+                postalCode: Users[i].postalCode
             });
             return;
         }
