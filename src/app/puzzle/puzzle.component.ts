@@ -1,5 +1,6 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { time } from 'console';
 
 @Component({
   selector: 'app-puzzle',
@@ -132,7 +133,8 @@ export class PuzzleComponent implements OnInit {
       puzzlGame?.insertAdjacentElement('afterend', solvedTxt);
       solvedTxt.textContent = "SOLVED :)";
       console.log(allCards[1])
-
+      let score = 100 - passedTime;
+      if(score < 0) score = 0;
       clearInterval(timer);                        //stops the timer  
 
       for (let i = 0; i < allCards.length; ++i) { //remove onclick attribute from all cards
