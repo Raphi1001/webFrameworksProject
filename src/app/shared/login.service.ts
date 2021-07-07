@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 
 export class LogInService {
-    static isLogedIn = false;
+    static isLogedIn = true;
 
     logedIn(v : boolean){
         LogInService.isLogedIn = v;
