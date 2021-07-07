@@ -1,5 +1,7 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { GlobalConstants } from '../global-constants';
 
 @Component({
   selector: 'app-puzzle',
@@ -8,7 +10,13 @@ import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 })
 export class PuzzleComponent implements OnInit {
   selectedPuzzle = this.router.url == "/puzzle1" ? "puzzle1_imgs" : "puzzle2_imgs"; //select puzzle based on url
-  constructor(private renderer: Renderer2, private router: Router) { }
+  
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+  
+  
+  constructor(private http: HttpClient, private renderer: Renderer2, private router: Router) { }
   //kann ich nicht im constructor machen
   private passedTime = 0;
   //private timer: NodeJS.Timeout;
@@ -17,7 +25,6 @@ export class PuzzleComponent implements OnInit {
   scorepoints = "";
 
   ngOnInit(): void {
-    console.log(this.router.url);
     this.printPlayingField();
     this.timerStart();
     this.passedTime = 0;
@@ -140,13 +147,13 @@ export class PuzzleComponent implements OnInit {
       solvedTxt.setAttribute('id', 'solvedTxt');
       puzzlGame?.insertAdjacentElement('afterend', solvedTxt);
       solvedTxt.textContent = "SOLVED :)";
-      console.log(allCards[1])
       let score = 100 - this.passedTime;
       if(score < 0) score = 0;
       clearInterval(this.timer);//stops the timer
       //noch abfrage ob man eingelogt ist  
       if(true){
         this.scorepoints = score.toString();
+        this.addHighscore();
       }else{
         this.scorepoints = "Login required";
       }
@@ -167,4 +174,21 @@ export class PuzzleComponent implements OnInit {
       }
     }, 1000); //updates Timer
   }
+
+  addHighscore() {
+    console.log(GlobalConstants.email);
+    var inputData = { points: this.scorepoints, username: GlobalConstants.email};
+    this.http.post<{ message: string, updated:boolean }>('http://localhost:3000/highscore', inputData, this.httpOptions)
+    .subscribe({
+      next: (responseData) => {
+        alert(responseData.message);
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
+
+
 }

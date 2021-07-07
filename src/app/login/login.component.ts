@@ -47,15 +47,16 @@ export class LoginComponent implements OnInit {
   onLoginSubmit() {
     if (!this.email.valid || !this.password.valid) return;
     var inputData = { email: this.email.value, password: this.password.value };
-    this.http.post<{ message: string, success: boolean, token: number}>('http://localhost:3000/login', inputData, this.httpOptions)
+    this.http.post<{ message: string, success: boolean, token: number, email:string}>('http://localhost:3000/login', inputData, this.httpOptions)
       .subscribe({
         next: (responseData) => {
           console.log(responseData.message);
           if(responseData.success == true)
           {
+            console.log("hier " , responseData.email);
             GlobalConstants.token = responseData.token; 
-
-            this.router.navigate(['/game'])
+            GlobalConstants.email = responseData.email;
+            this.router.navigate(['/puzzle-overview'])
             return;
           }
           alert("Email oder Passwort nicht korrekt!");
