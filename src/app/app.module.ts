@@ -23,6 +23,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ImpressumComponent } from './impressum/impressum.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { LogInService } from './shared/login.service';
+import { PuzzleOverviewComponent } from './puzzle-overview/puzzle-overview.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +35,7 @@ import { LogInService } from './shared/login.service';
     FaqComponent,
     ProfileComponent,
     ImpressumComponent,
+    PuzzleOverviewComponent,
   ],
   imports: [
     BrowserModule,

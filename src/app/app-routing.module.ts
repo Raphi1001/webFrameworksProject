@@ -6,6 +6,8 @@ import { SignupComponent } from './signup/signup.component';
 import { GameComponent } from './game/game.component';
 import { HighscoreListComponent } from './highscore-list/highscore-list.component';
 import { PuzzleComponent } from './puzzle/puzzle.component';
+import { PuzzleOverviewComponent } from './puzzle-overview/puzzle-overview.component';
+
 
 import { ProfileComponent } from './profile/profile.component';
 import { FaqComponent } from './faq/faq.component';
@@ -17,7 +19,9 @@ const routes: Routes = [
 { path: 'signup', component: SignupComponent },
 { path: 'game', component: GameComponent },
 { path: 'highscore-list', component: HighscoreListComponent },
-{ path: 'puzzle', component: PuzzleComponent },
+{ path: 'puzzle1', component: PuzzleComponent },
+{ path: 'puzzle2', component: PuzzleComponent },
+{ path: 'puzzle-overview', component: PuzzleOverviewComponent },
 
 { path: 'profile', component: ProfileComponent },
 { path: 'faq', component: FaqComponent },

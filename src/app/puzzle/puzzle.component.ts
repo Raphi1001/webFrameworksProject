@@ -1,4 +1,5 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-puzzle',
@@ -6,16 +7,18 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
   styleUrls: ['./puzzle.component.css']
 })
 export class PuzzleComponent implements OnInit {
-
-  constructor(private renderer: Renderer2) { }
+  selectedPuzzle = this.router.url == "/puzzle1" ? "puzzle1_imgs" : "puzzle2_imgs"; //select puzzle based on url
+  passedTime = 0;
+  constructor(private renderer: Renderer2, private router: Router) { }
 
   ngOnInit(): void {
+    console.log(this.router.url);
     this.printPlayingField();
   }
 
-
   //creates the puzzle
   printPlayingField() {
+
     let puzzleParts = this.shufflePuzzleParts();
     let puzzlGame = document.getElementById("puzzleGame");
     let allCards = [];
@@ -26,7 +29,7 @@ export class PuzzleComponent implements OnInit {
         let newCard = this.renderer.createElement("img"); //creates new img element
         newCard.setAttribute("class", "card");
         newCard.setAttribute("id", "card-" + i);
-        newCard.setAttribute("src", "assets/pics/puzzle1_imgs/img" + puzzleParts[i] + ".jpg");
+        newCard.setAttribute("src", "assets/pics/" + this.selectedPuzzle + "/img" + puzzleParts[i] + ".jpg");
         puzzlGame.appendChild(newCard);
         allCards.push(newCard);
         ++i;
@@ -35,8 +38,8 @@ export class PuzzleComponent implements OnInit {
       puzzlGame.appendChild(br);
     }
 
-    allCards.forEach(element =>  this.renderer.listen(element, 'click', () => { this.selectCard(element.id); }));
-  
+    allCards.forEach(element => this.renderer.listen(element, 'click', () => { this.selectCard(element.id); }));       //clicked at cards call selectCard function with own id as parameter
+
     this.checkIfSolved();
   }
 
@@ -63,15 +66,15 @@ export class PuzzleComponent implements OnInit {
     if (!curNumb) return;
     let id = curNumb.join("");
     let cartToSelect = document.getElementById("card-" + id); //gets the clicked at card
-      if (!cartToSelect) return;
-      if (cartToSelect.classList.contains("selected")) { //if clicked at card is already selected
-          cartToSelect.classList.remove("selected"); //deselect selected card
-      }
-      else {
-          cartToSelect.classList.add("selected"); //select card
-      }
-  
-      this.swapselectedCards();
+    if (!cartToSelect) return;
+    if (cartToSelect.classList.contains("selected")) { //if clicked at card is already selected
+      cartToSelect.classList.remove("selected"); //deselect selected card
+    }
+    else {
+      cartToSelect.classList.add("selected"); //select card
+    }
+
+    this.swapselectedCards();
   }
 
 
@@ -121,9 +124,11 @@ export class PuzzleComponent implements OnInit {
       let puzzlGame = document.getElementById("puzzleGame");
       let solvedTxt = document.createElement("h2"); //create solved txt
       solvedTxt.setAttribute('id', 'solvedTxt');
-      puzzlGame?.insertAdjacentElement( 'afterend', solvedTxt);
+      puzzlGame?.insertAdjacentElement('afterend', solvedTxt);
       solvedTxt.textContent = "SOLVED :)";
       console.log(allCards[1])
+      
+      clearInterval(timer);                        //stops the timer  
 
       for (let i = 0; i < allCards.length; ++i) { //remove onclick attribute from all cards
         allCards[i].removeAttribute("id");
@@ -131,3 +136,13 @@ export class PuzzleComponent implements OnInit {
     }
   }
 }
+
+let passedTime = 0;
+var timer = setInterval(function () {
+  ++passedTime;
+  let timer = document.getElementById("timer");
+  if (timer) {
+    timer.textContent = passedTime.toString();
+  }
+}, 1000); //updates Timer
+
