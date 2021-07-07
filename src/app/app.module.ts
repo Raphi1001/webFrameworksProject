@@ -15,7 +15,6 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field'; 
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import { GameComponent } from './game/game.component';
 import { HighscoreListComponent } from './highscore-list/highscore-list.component';
 import { PuzzleComponent } from './puzzle/puzzle.component';
 import { FaqComponent } from './faq/faq.component';
@@ -29,7 +28,6 @@ import { PuzzleOverviewComponent } from './puzzle-overview/puzzle-overview.compo
     AppComponent,
     LoginComponent,
     SignupComponent,
-    GameComponent,
     HighscoreListComponent,
     PuzzleComponent,
     FaqComponent,

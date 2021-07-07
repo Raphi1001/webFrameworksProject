@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
             GlobalConstants.currentUser.city = responseData.city;
             GlobalConstants.currentUser.postalCode = responseData.postalCode;
             console.log(GlobalConstants.currentUser.postalCode);
-            this.router.navigate(['/puzzle-overview'])
+            this.router.navigate(['/'])
             return;
           }
           alert("Email oder Passwort nicht korrekt!");
