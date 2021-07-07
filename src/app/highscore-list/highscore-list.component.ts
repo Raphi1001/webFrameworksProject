@@ -56,9 +56,9 @@ export class HighscoreListComponent implements OnInit {
             tempList.push(list[uname]);
           }
 
-          tempList.sort(function(a:any, b:any){return b-a});   //sorts the temporary list in descending order
+          tempList.sort(function (a: any, b: any) { return b - a });   //sorts the temporary list in descending order
           tempList.forEach(element => {
-            for (uname in list) {                   
+            for (uname in list) {
               if (element == list[uname]) {
                 var newLi = document.createElement("li");
                 var newContent = document.createTextNode(String(uname) + ": " + String(list[uname]));
@@ -70,14 +70,6 @@ export class HighscoreListComponent implements OnInit {
               }
             }
           });
-          /*
-          for (uname in list) {
-            var newLi = document.createElement("li");
-            var newContent = document.createTextNode(String(uname) + ": " + String(list[uname]));
-            newLi.appendChild(newContent);
-            highscoreList.append(newLi);
-          }
-          */
         },
         error: (err) => {
           alert("Invalid User Input");

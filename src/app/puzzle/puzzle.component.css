@@ -1,18 +1,18 @@
 #puzzleGame {
-    background-color: pink;
     margin-top: 20px;
     font-size: 0px;
     text-align: center;
 }
 
-h2{
+h2 {
     display: inline-block;
 }
 
-#score{
+#score {
     text-align: right;
     float: right;
 }
+
 
 /*
 Funktioniert aus irgendeinem Grund hier nicht,deshalb nach styles.css verschoben
