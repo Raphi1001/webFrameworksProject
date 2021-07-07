@@ -7,8 +7,6 @@
             <a mat-raised-button color="primary" type="button" class="toolbar-link" (click)="logOut()">Logout</a>
             <br>
             <a mat-raised-button color="primary" type="button" class="toolbar-link" routerLink="/profile">Profile</a>
-            <br>
-            <a mat-raised-button color="primary" type="button" class="toolbar-link" routerLink="/highscore-list">Highscores</a>
         </div>
         <ng-template #elseBlock>
             <a mat-raised-button id="signUp" color="primary" type="button" class="toolbar-link" routerLink="/signup">SignUp</a>
@@ -16,6 +14,8 @@
             <a mat-raised-button color="primary" type="button" class="toolbar-link" routerLink="/login">Login</a>
             <br>
         </ng-template>
+        <a mat-raised-button color="primary" type="button" class="toolbar-link" routerLink="/highscore-list">Highscores</a>
+        <br>
         <a mat-raised-button color="primary" type="button" class="toolbar-link" routerLink="/puzzle-overview">Puzzle</a>
         <br>
         <a mat-raised-button color="primary" type="button" class="toolbar-link buttonBottom" routerLink="/faq">FAQ</a>
