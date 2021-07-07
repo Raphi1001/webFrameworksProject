@@ -2,6 +2,7 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { GlobalConstants } from '../global-constants';
+import { LogInService } from '../shared/login.service';
 
 @Component({
   selector: 'app-puzzle',
@@ -16,7 +17,7 @@ export class PuzzleComponent implements OnInit {
   };
   
   
-  constructor(private http: HttpClient, private renderer: Renderer2, private router: Router) { }
+  constructor(private http: HttpClient, private renderer: Renderer2, private router: Router, private loginService: LogInService) { }
   //kann ich nicht im constructor machen
   private passedTime = 0;
   //private timer: NodeJS.Timeout;
@@ -150,8 +151,8 @@ export class PuzzleComponent implements OnInit {
       let score = 100 - this.passedTime;
       if(score < 0) score = 0;
       clearInterval(this.timer);//stops the timer
-      //noch abfrage ob man eingelogt ist  
-      if(true){
+      //abfrage ob man eingelogt ist, für highscore 
+      if(this.loginService.getStatus()){
         this.scorepoints = score.toString();
         this.addHighscore();
       }else{

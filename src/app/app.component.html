@@ -4,11 +4,11 @@
         <br>
         <!--checkt ob man eingelog ist oder nicht, buttons werden entsprechend angezeigt-->
         <div *ngIf="isLogedIn; else elseBlock">
-            <a mat-raised-button color="primary" type="button" class="toolbar-link" routerLink="/login">Logout</a>
+            <a mat-raised-button color="primary" type="button" class="toolbar-link" (click)="logOut()">Logout</a>
             <br>
             <a mat-raised-button color="primary" type="button" class="toolbar-link" routerLink="/profile">Profile</a>
             <br>
-            <a mat-raised-button color="primary" type="button" class="toolbar-link" routerLink="/highscore-list">Highscore</a>
+            <a mat-raised-button color="primary" type="button" class="toolbar-link" routerLink="/highscore-list">Highscores</a>
         </div>
         <ng-template #elseBlock>
             <a mat-raised-button id="signUp" color="primary" type="button" class="toolbar-link" routerLink="/signup">SignUp</a>
@@ -17,8 +17,6 @@
             <br>
         </ng-template>
         <a mat-raised-button color="primary" type="button" class="toolbar-link" routerLink="/puzzle-overview">Puzzle</a>
-        <br>
-        <a mat-raised-button color="primary" type="button" class="toolbar-link" routerLink="/highscore-list">Highscore List </a>
         <br>
         <a mat-raised-button color="primary" type="button" class="toolbar-link buttonBottom" routerLink="/faq">FAQ</a>
         <br>

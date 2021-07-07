@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private logInService: LogInService) {}
 
   ngOnInit(): void {
 
@@ -56,6 +56,7 @@ export class LoginComponent implements OnInit {
             console.log("hier " , responseData.email);
             GlobalConstants.token = responseData.token; 
             GlobalConstants.email = responseData.email;
+            this.logInService.setMessage(true);
             this.router.navigate(['/puzzle-overview'])
             return;
           }
