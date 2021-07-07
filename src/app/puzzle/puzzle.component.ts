@@ -1,6 +1,5 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
-import { time } from 'console';
 
 @Component({
   selector: 'app-puzzle',
