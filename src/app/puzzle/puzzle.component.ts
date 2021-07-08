@@ -21,6 +21,7 @@ export class PuzzleComponent implements OnInit {
   //kann ich nicht im constructor machen
   private passedTime = 0;
   //private timer: NodeJS.Timeout;
+  //any weil ich nicht den typen schaffe
   private timer: any;
   scoreVisible = false;
   scorepoints = "";
