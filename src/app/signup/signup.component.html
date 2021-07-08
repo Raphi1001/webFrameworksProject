@@ -5,6 +5,8 @@
             <mat-label>Enter your email</mat-label>
             <input matInput [formControl]="email" required placeholder="max@mustermann.at">
             <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
+            <mat-hint id="emailErr" class="matchErr"></mat-hint>
+
         </mat-form-field>
 
         <mat-form-field appearance="fill">
@@ -45,8 +47,8 @@
             <mat-label>Company:</mat-label>
             <input matInput id="company" value="FH Technikum Wien" maxlength="100" pattern="^[A-Za-z0-9- ÄäÖöÜüß]*$" disabled>
         </mat-form-field>
-
         <button mat-raised-button color="primary" type="submit">Sign Up</button>
+        <p id="success"></p>
 
     </form>
 </mat-card>

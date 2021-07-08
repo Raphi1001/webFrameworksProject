@@ -11,17 +11,17 @@ import { LogInService } from '../shared/login.service';
 })
 export class PuzzleComponent implements OnInit {
   selectedPuzzle = this.router.url == "/puzzle1" ? "puzzle1_imgs" : "puzzle2_imgs"; //select puzzle based on url
-  
+
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
-  
-  
+
+
   constructor(private http: HttpClient, private renderer: Renderer2, private router: Router, private loginService: LogInService) { }
   //kann ich nicht im constructor machen
   private passedTime = 0;
   //private timer: NodeJS.Timeout;
-  private timer : any;
+  private timer: any;
   scoreVisible = false;
   scorepoints = "";
 
@@ -149,13 +149,13 @@ export class PuzzleComponent implements OnInit {
       puzzlGame?.insertAdjacentElement('afterend', solvedTxt);
       solvedTxt.textContent = "SOLVED :)";
       let score = 100 - this.passedTime;
-      if(score < 0) score = 0;
+      if (score < 0) score = 0;
       clearInterval(this.timer);//stops the timer
       //abfrage ob man eingelogt ist, für highscore 
-      if(this.loginService.getStatus()){
+      if (this.loginService.getStatus()) {
         this.scorepoints = score.toString();
         this.addHighscore();
-      }else{
+      } else {
         this.scorepoints = "Login required";
       }
       this.scoreVisible = true;
@@ -166,8 +166,8 @@ export class PuzzleComponent implements OnInit {
     }
   }
 
-  timerStart(){
-    this.timer = setInterval( () => {
+  timerStart() {
+    this.timer = setInterval(() => {
       this.passedTime++;
       let timer = document.getElementById("timer");
       if (timer) {
@@ -177,16 +177,21 @@ export class PuzzleComponent implements OnInit {
   }
 
   addHighscore() {
-    var inputData = { points: this.scorepoints, username: GlobalConstants.currentUser.email};
-    this.http.post<{ message: string, updated:boolean }>('http://localhost:3000/highscore', inputData, this.httpOptions)
-    .subscribe({
-      next: (responseData) => {
-        alert(responseData.message);
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    });
+    var inputData = { points: this.scorepoints, username: GlobalConstants.currentUser.email };
+    this.http.post<{ message: string, updated: boolean }>('http://localhost:3000/highscore', inputData, this.httpOptions)
+      .subscribe({
+        next: (responseData) => {
+          let newHighscore = document.getElementById("newHighscore");
+          if (responseData.updated) {
+            if (newHighscore) newHighscore.textContent = "Congratulations you achieved a new Highscore!";
+          } else {
+            if (newHighscore) newHighscore.textContent = "No new Highscore. Try again.";
+          }
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      });
   }
 
 

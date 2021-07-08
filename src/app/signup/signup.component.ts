@@ -95,16 +95,23 @@ export class SignupComponent implements OnInit {
     if (company != "FH Technikum Wien") return;
 
 
-    var inputData = { email: this.email.value, password: this.password.value, adress: this.address.value, city: this.city.value, postalCode: this.postalCode.value, pwConfirm: this.pwConfirm.value};
-    this.http.post<{ message: string }>('http://localhost:3000/signUp', inputData, this.httpOptions)
-    .subscribe({
-      next: (responseData) => {
-        alert(responseData.message);
-        this.router.navigate(['/login'])
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    });
+    var inputData = { email: this.email.value, password: this.password.value, adress: this.address.value, city: this.city.value, postalCode: this.postalCode.value, pwConfirm: this.pwConfirm.value };
+    this.http.post<{ message: string, success: boolean }>('http://localhost:3000/signUp', inputData, this.httpOptions)
+      .subscribe({
+        next: (responseData) => {
+          if (responseData.success) {
+            var successMsg = document.getElementById("success");
+              if(successMsg) successMsg.textContent = "Sign Up successfull! You will be redirected shortly.";
+            setTimeout( () => this.router.navigate(['/login']), 3000 );
+          } else {
+              var emailErr = document.getElementById("emailErr");
+              if(emailErr) emailErr.textContent = "The email you entered is already taken";
+          }
+
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      });
   }
 }

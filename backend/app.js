@@ -64,7 +64,8 @@ app.post('/signUp', (req, res, next) => {
     var newUser = new User(String(loginData.email), String(loginData.password), String(loginData.pwConfirm), String(loginData.adress), String(loginData.city), String(loginData.postalCode));
     if (newUser.invalid) {
         res.status(400).json({
-            message: "Invalid User Input"
+            message: "Invalid User Input",
+            success: false
         });
         return;
     }
@@ -73,7 +74,9 @@ app.post('/signUp', (req, res, next) => {
         if (Users[i].email == newUser.email) {
             console.log("Email already taken");
             res.status(200).json({
-                message: "Email already taken"
+                message: "Email already taken",
+                success: false
+
             });
             return;
         }
@@ -82,7 +85,8 @@ app.post('/signUp', (req, res, next) => {
     Users.push(newUser);
     console.log("New User created successfully")
     res.status(200).json({
-        message: "New User created successfully"
+        message: "New User created successfully",
+        success: true
     });
 });
 

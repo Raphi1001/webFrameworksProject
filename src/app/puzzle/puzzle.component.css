@@ -13,6 +13,10 @@ h2 {
     float: right;
 }
 
+#newHighscore {
+    text-align: center;
+}
+
 
 /*
 Funktioniert aus irgendeinem Grund hier nicht,deshalb nach styles.css verschoben

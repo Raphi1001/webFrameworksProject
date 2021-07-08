@@ -10,3 +10,7 @@ mat-spinner {
 .matchErr {
     color: red;
 }
+
+#success {
+    color: green;
+}
