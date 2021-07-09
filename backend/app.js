@@ -18,7 +18,7 @@ var User2 = new User("erica@musterfrau.at", "22222222", "22222222", "Musterstra�
 var Users = [User1, User2];
 
 var AuthenticationTokens = {};
-var Highscores = { Harry: 50, Paul: 51, Raphi: 37, Noc: 422, Noc2: 422, Noc3: 421, Noc4: 72, asdasd: 31, lolo: 56, speta: 39, harry: 56, ich: 700 };
+var Highscores = { Harry: 50, Paul: 51, Raphi: 37, Nicky: 87, Fabi: 42, Kai: 4, Luka: 72, Jerry: 91, Lolo: 26, Ben: 98, Larry: 11, Ich: 32 };
 /* DATABASE END */
 
 
@@ -93,7 +93,7 @@ app.post('/signUp', (req, res, next) => {
 app.post('/highscore', (req, res, next) => {
 
     const data = req.body;
-    if (isNaN(data.points) || !data.username.match(/^[A-Za-z0-9ÄäÖöÜüß@.]*$/)) {
+    if (isNaN(data.points) || !data.username.match(/^[A-Za-z0-9ÄäÖöÜüß@.]*$/) || data.points > 100 || data.points < 0) {
         res.status(400).json({
             message: "Invalid user input",
         });

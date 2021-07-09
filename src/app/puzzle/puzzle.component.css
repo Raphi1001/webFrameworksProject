@@ -16,32 +16,3 @@ h2 {
 #newHighscore {
     text-align: center;
 }
-
-
-/*
-Funktioniert aus irgendeinem Grund hier nicht,deshalb nach styles.css verschoben
-.card {
-    display: inline;
-    height: 200px;
-    width: 200px;
-    border: 2px solid black;
-    border-radius: 0%;
-}
-
-.selected {
-    border: 2px solid pink;
-    opacity: 0.5;
-}
-
-.noJs {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-}
-
-#solvedTxt{
-    text-align: center;
-}
-
-*/
